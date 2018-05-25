@@ -3,11 +3,7 @@ package com.binance.api.client.impl;
 import com.binance.api.client.BinanceApiCallback;
 import com.binance.api.client.BinanceApiWebSocketClient;
 import com.binance.api.client.constant.BinanceApiConstants;
-import com.binance.api.client.domain.event.AggTradeEvent;
-import com.binance.api.client.domain.event.AllMarketTickersEvent;
-import com.binance.api.client.domain.event.CandlestickEvent;
-import com.binance.api.client.domain.event.DepthEvent;
-import com.binance.api.client.domain.event.UserDataUpdateEvent;
+import com.binance.api.client.domain.event.*;
 import com.binance.api.client.domain.market.CandlestickInterval;
 import okhttp3.Dispatcher;
 import okhttp3.OkHttpClient;
@@ -33,6 +29,12 @@ public class BinanceApiWebSocketClientImpl implements BinanceApiWebSocketClient,
     public Closeable onDepthEvent(String symbol, BinanceApiCallback<DepthEvent> callback) {
         final String channel = String.format("%s@depth", symbol);
         return createNewWebSocket(channel, new BinanceApiWebSocketListener<>(callback, DepthEvent.class));
+    }
+
+    @Override
+    public Closeable onPartialDepthEvent(String symbol, int depth, BinanceApiCallback<PartialDepthEvent> callback) {
+        final String channel = String.format("%s@depth%s", symbol, depth);
+        return createNewWebSocket(channel, new BinanceApiWebSocketListener<>(callback, PartialDepthEvent.class));
     }
 
     @Override
