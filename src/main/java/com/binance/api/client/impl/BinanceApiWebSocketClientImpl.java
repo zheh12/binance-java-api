@@ -12,6 +12,7 @@ import okhttp3.WebSocket;
 
 import java.io.Closeable;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Binance API WebSocket client implementation using OkHttp.
@@ -34,6 +35,12 @@ public class BinanceApiWebSocketClientImpl implements BinanceApiWebSocketClient,
     @Override
     public Closeable onPartialDepthEvent(String symbol, int depth, BinanceApiCallback<PartialDepthEvent> callback) {
         final String channel = String.format("%s@depth%s", symbol, depth);
+        return createNewWebSocket(channel, new BinanceApiWebSocketListener<>(callback, PartialDepthEvent.class));
+    }
+
+    @Override
+    public Closeable onMultiplePartialDepthEvent(List<String> symbols, int depth, BinanceApiCallback<PartialDepthEvent> callback) {
+        final String channel = String.join("/", symbols.stream().map(x -> String.format("%s@depth%s", x, depth)).collect(Collectors.toList()));
         return createNewWebSocket(channel, new BinanceApiWebSocketListener<>(callback, PartialDepthEvent.class));
     }
 

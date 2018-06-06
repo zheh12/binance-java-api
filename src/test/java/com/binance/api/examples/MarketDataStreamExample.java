@@ -5,6 +5,8 @@ import com.binance.api.client.BinanceApiWebSocketClient;
 import com.binance.api.client.domain.market.CandlestickInterval;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Market data stream endpoints examples.
@@ -27,5 +29,12 @@ public class MarketDataStreamExample {
 
     // Listen for change in the top 5 level order book in ETH/BTC
     client.onPartialDepthEvent("ethbtc", 5, response -> System.out.println(response));
+
+    // change in the top 5 level order book in ETH/BTC and BNB/BTC
+    List<String> symbols = new ArrayList<>();
+    symbols.add("ethbtc");
+    symbols.add("bnbbtc");
+    client.onMultiplePartialDepthEvent(symbols, 5, response -> System.out.println(response));
+
   }
 }

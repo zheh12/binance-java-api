@@ -22,6 +22,8 @@ public interface BinanceApiWebSocketClient extends Closeable {
 
     Closeable onPartialDepthEvent(String symbol, int depth, BinanceApiCallback<PartialDepthEvent> callback);
 
+    Closeable onMultiplePartialDepthEvent(List<String> symbols, int depth, BinanceApiCallback<PartialDepthEvent> callback);
+
     /**
      * Open a new web socket to receive {@link CandlestickEvent candlestickEvents} on a callback.
      *
