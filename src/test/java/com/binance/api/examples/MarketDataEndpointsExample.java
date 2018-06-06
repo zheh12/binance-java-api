@@ -43,6 +43,10 @@ public class MarketDataEndpointsExample {
     System.out.println(candlesticks);
 
     // Getting all book tickers
+    BookTicker bookTicker = client.getBookTicker("ETHBTC");
+    System.out.println(bookTicker);
+
+    // Getting all book tickers
     List<BookTicker> allBookTickers = client.getBookTickers();
     System.out.println(allBookTickers);
 

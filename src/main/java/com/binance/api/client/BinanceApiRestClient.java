@@ -149,6 +149,11 @@ public interface BinanceApiRestClient {
   TickerPrice getPrice(String symbol);
 
   /**
+   * Get best price/qty on the order book for one symbol.
+   */
+  BookTicker getBookTicker(String symbol);
+
+  /**
    * Get best price/qty on the order book for all symbols.
    */
   List<BookTicker> getBookTickers();
