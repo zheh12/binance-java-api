@@ -21,9 +21,11 @@ public class BinanceApiServiceGenerator {
 
     static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
+    static String API_BASE_URL = System.getProperty("binance.api.base.url", BinanceApiConstants.API_BASE_URL);
+
     private static Retrofit.Builder builder =
         new Retrofit.Builder()
-            .baseUrl(BinanceApiConstants.API_BASE_URL)
+            .baseUrl(API_BASE_URL)
             .addConverterFactory(JacksonConverterFactory.create());
 
     private static Retrofit retrofit = builder.build();
