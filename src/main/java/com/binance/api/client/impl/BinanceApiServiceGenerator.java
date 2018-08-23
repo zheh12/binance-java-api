@@ -24,6 +24,7 @@ public class BinanceApiServiceGenerator {
     private static final OkHttpClient sharedClient = new OkHttpClient.Builder()
             .pingInterval(20, TimeUnit.SECONDS)
             .build();
+    static String API_BASE_URL = System.getProperty("binance.api.base.url", BinanceApiConstants.API_BASE_URL);
 
     private static final Converter.Factory converterFactory = JacksonConverterFactory.create();
 
@@ -38,7 +39,7 @@ public class BinanceApiServiceGenerator {
 
     public static <S> S createService(Class<S> serviceClass, String apiKey, String secret) {
         Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
-                .baseUrl(BinanceApiConstants.API_BASE_URL)
+                .baseUrl(API_BASE_URL)
                 .addConverterFactory(converterFactory);
 
         if (StringUtils.isEmpty(apiKey) || StringUtils.isEmpty(secret)) {
