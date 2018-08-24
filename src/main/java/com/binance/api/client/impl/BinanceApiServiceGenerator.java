@@ -36,10 +36,13 @@ public class BinanceApiServiceGenerator {
     public static <S> S createService(Class<S> serviceClass) {
         return createService(serviceClass, null, null);
     }
-
     public static <S> S createService(Class<S> serviceClass, String apiKey, String secret) {
+        return createService(serviceClass, apiKey, secret, API_BASE_URL);
+    }
+
+    public static <S> S createService(Class<S> serviceClass, String apiKey, String secret,String baseUrl) {
         Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
-                .baseUrl(API_BASE_URL)
+                .baseUrl(baseUrl)
                 .addConverterFactory(converterFactory);
 
         if (StringUtils.isEmpty(apiKey) || StringUtils.isEmpty(secret)) {

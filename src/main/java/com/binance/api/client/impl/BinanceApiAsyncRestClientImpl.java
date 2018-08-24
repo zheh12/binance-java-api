@@ -35,6 +35,10 @@ public class BinanceApiAsyncRestClientImpl implements BinanceApiAsyncRestClient 
     binanceApiService = createService(BinanceApiService.class, apiKey, secret);
   }
 
+  public BinanceApiAsyncRestClientImpl(String apiKey, String secret, String baseUrl) {
+    binanceApiService = createService(BinanceApiService.class, apiKey, secret, baseUrl);
+  }
+
   // General endpoints
 
   @Override
