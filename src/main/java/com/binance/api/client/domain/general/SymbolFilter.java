@@ -79,7 +79,7 @@ public class SymbolFilter {
 
   private String applyToMarket;
 
-  private String avgPriceMins;
+  private int avgPriceMins;
 
   public FilterType getFilterType() {
     return filterType;
@@ -170,11 +170,11 @@ public class SymbolFilter {
     this.applyToMarket = applyToMarket;
   }
 
-  public String getAvgPriceMins() {
+  public int getAvgPriceMins() {
     return avgPriceMins;
   }
 
-  public void setAvgPriceMins(String avgPriceMins) {
+  public void setAvgPriceMins(int avgPriceMins) {
     this.avgPriceMins = avgPriceMins;
   }
 }
