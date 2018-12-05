@@ -106,7 +106,7 @@ public class ExchangeInfoDeserializerTest {
       assertFalse(symbolInfo.isIcebergAllowed());
 
       List<SymbolFilter> symbolFilters = symbolInfo.getFilters();
-      assertEquals(symbolFilters.size(), 3);
+      assertEquals(symbolFilters.size(), 5);
 
       SymbolFilter priceFilter = symbolFilters.get(0);
       assertEquals(priceFilter.getFilterType(), FilterType.PRICE_FILTER);
