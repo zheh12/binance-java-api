@@ -21,53 +21,53 @@ import java.util.stream.Collectors;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NewOrderResponse {
 
-  /**
-   * Order symbol.
-   */
-  private String symbol;
+    /**
+     * Order symbol.
+     */
+    private String symbol;
 
-  /**
-   * Order id.
-   */
-  private Long orderId;
+    /**
+     * Order id.
+     */
+    private Long orderId;
 
-  /**
-   * This will be either a generated one, or the newClientOrderId parameter
-   * which was passed when creating the new order.
-   */
-  private String clientOrderId;
+    /**
+     * This will be either a generated one, or the newClientOrderId parameter
+     * which was passed when creating the new order.
+     */
+    private String clientOrderId;
 
-  private String price;
+    private String price;
 
-  private String origQty;
+    private String origQty;
 
-  private String executedQty;
+    private String executedQty;
 
   private String cummulativeQuoteQty;
 
   private OrderStatus status;
 
-  private TimeInForce timeInForce;
+    private TimeInForce timeInForce;
 
-  private OrderType type;
+    private OrderType type;
 
-  private OrderSide side;
+    private OrderSide side;
 
   // @JsonSetter(nulls = Nulls.AS_EMPTY)
   private List<Trade> fills;
 
-  /**
-   * Transact time for this order.
-   */
-  private Long transactTime;
+    /**
+     * Transact time for this order.
+     */
+    private Long transactTime;
 
-  public String getSymbol() {
-    return symbol;
-  }
+    public String getSymbol() {
+        return symbol;
+    }
 
-  public void setSymbol(String symbol) {
-    this.symbol = symbol;
-  }
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
 
   public Long getOrderId() {
     return orderId;
@@ -167,7 +167,7 @@ public class NewOrderResponse {
 
   @Override
   public String toString() {
-    return new ToStringBuilder(this, BinanceApiConstants.TO_STRING_BUILDER_STYLE)
+    return  new ToStringBuilder(this, BinanceApiConstants.TO_STRING_BUILDER_STYLE)
         .append("symbol", symbol)
         .append("orderId", orderId)
         .append("clientOrderId", clientOrderId)
@@ -185,4 +185,5 @@ public class NewOrderResponse {
             .collect(Collectors.joining(", ")))
         .toString();
   }
+
 }

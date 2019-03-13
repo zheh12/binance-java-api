@@ -1,5 +1,6 @@
 package com.binance.api.client.domain.general;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
@@ -21,5 +22,19 @@ public enum FilterType {
 
   // Exchange
   EXCHANGE_MAX_NUM_ORDERS,
-  EXCHANGE_MAX_ALGO_ORDERS
+  EXCHANGE_MAX_ALGO_ORDERS,
+
+  // UNKNOWN
+  UNKNOWN;
+
+  @JsonCreator
+  public static FilterType fromString(String value) {
+    for (FilterType filterType : values()) {
+      if (filterType.name().equalsIgnoreCase(value)) {
+        return filterType;
+      }
+    }
+
+    return UNKNOWN;
+  }
 }

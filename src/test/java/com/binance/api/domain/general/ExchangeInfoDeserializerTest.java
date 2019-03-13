@@ -69,6 +69,14 @@ public class ExchangeInfoDeserializerTest {
         "    }, {\n" +
         "      \"filterType\": \"MIN_NOTIONAL\",\n" +
         "      \"minNotional\": \"0.00100000\"\n" +
+        "    }, {\n" +
+        "      \"filterType\": \"PERCENT_PRICE\",\n" +
+        "      \"multiplierUp\": \"10\",\n" +
+        "      \"multiplierDown\": \"0.1\",\n" +
+        "      \"avgPriceMins\": \"5\"\n" +
+        "    }, {\n" +
+        "      \"filterType\": \"SOME_NEW_FILTER\",\n" +
+        "      \"random1\": \"10\"\n" +
         "    }]\n" +
         "  }]" +
         "}";
@@ -98,7 +106,7 @@ public class ExchangeInfoDeserializerTest {
       assertFalse(symbolInfo.isIcebergAllowed());
 
       List<SymbolFilter> symbolFilters = symbolInfo.getFilters();
-      assertEquals(symbolFilters.size(), 3);
+      assertEquals(symbolFilters.size(), 5);
 
       SymbolFilter priceFilter = symbolFilters.get(0);
       assertEquals(priceFilter.getFilterType(), FilterType.PRICE_FILTER);

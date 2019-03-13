@@ -77,6 +77,10 @@ public class SymbolFilter {
    */
   private String limit;
 
+  private boolean applyToMarket;
+
+  private int avgPriceMins;
+
   public FilterType getFilterType() {
     return filterType;
   }
@@ -156,5 +160,21 @@ public class SymbolFilter {
 
   public void setLimit(String limit) {
     this.limit = limit;
+  }
+
+  public boolean getApplyToMarket() {
+    return applyToMarket;
+  }
+
+  public void setApplyToMarket(boolean applyToMarket) {
+    this.applyToMarket = applyToMarket;
+  }
+
+  public int getAvgPriceMins() {
+    return avgPriceMins;
+  }
+
+  public void setAvgPriceMins(int avgPriceMins) {
+    this.avgPriceMins = avgPriceMins;
   }
 }

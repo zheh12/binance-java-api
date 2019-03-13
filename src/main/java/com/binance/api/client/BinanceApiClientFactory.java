@@ -60,13 +60,22 @@ public class BinanceApiClientFactory {
     return new BinanceApiRestClientImpl(apiKey, secret);
   }
 
-  /**
+    public BinanceApiRestClient newRestClient(String baseUrl) {
+        return new BinanceApiRestClientImpl(apiKey, secret, baseUrl);
+    }
+
+    /**
    * Creates a new asynchronous/non-blocking REST client.
    */
-  public BinanceApiAsyncRestClient newAsyncRestClient() {return new BinanceApiAsyncRestClientImpl(apiKey, secret);
+  public BinanceApiAsyncRestClient newAsyncRestClient() {
+      return new BinanceApiAsyncRestClientImpl(apiKey, secret);
   }
 
-  /**
+    public BinanceApiAsyncRestClient newAsyncRestClient(String baseUrl) {
+      return new BinanceApiAsyncRestClientImpl(apiKey, secret, baseUrl);
+    }
+
+    /**
    * Creates a new web socket client used for handling data streams.
    */
   public BinanceApiWebSocketClient newWebSocketClient() {

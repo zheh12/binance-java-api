@@ -3,11 +3,7 @@ package com.binance.api.client.impl;
 import com.binance.api.client.BinanceApiCallback;
 import com.binance.api.client.BinanceApiWebSocketClient;
 import com.binance.api.client.constant.BinanceApiConstants;
-import com.binance.api.client.domain.event.AggTradeEvent;
-import com.binance.api.client.domain.event.AllMarketTickersEvent;
-import com.binance.api.client.domain.event.CandlestickEvent;
-import com.binance.api.client.domain.event.DepthEvent;
-import com.binance.api.client.domain.event.UserDataUpdateEvent;
+import com.binance.api.client.domain.event.*;
 import com.binance.api.client.domain.market.CandlestickInterval;
 import com.fasterxml.jackson.core.type.TypeReference;
 
@@ -48,6 +44,18 @@ public class BinanceApiWebSocketClientImpl implements BinanceApiWebSocketClient,
                 .collect(Collectors.joining("/"));
         return createNewWebSocket(channel, new BinanceApiWebSocketListener<>(callback, CandlestickEvent.class));
     }
+
+    public Closeable onPartialDepthEvent(String symbol, int depth, BinanceApiCallback<PartialDepthEvent> callback) {
+        final String channel = String.format("%s@depth%s", symbol.toLowerCase(), depth);
+        return createNewWebSocket(channel, new BinanceApiWebSocketListener<>(callback, PartialDepthEvent.class));
+    }
+
+    @Override
+    public Closeable onMultiplePartialDepthEvent(List<String> symbols, int depth, BinanceApiCallback<PartialDepthEvent> callback) {
+        final String channel = String.join("/", symbols.stream().map(x -> String.format("%s@depth%s", x.toLowerCase(), depth)).collect(Collectors.toList()));
+        return createNewWebSocket(channel, new BinanceApiWebSocketListener<>(callback, PartialDepthEvent.class));
+    }
+
 
     public Closeable onAggTradeEvent(String symbols, BinanceApiCallback<AggTradeEvent> callback) {
         final String channel = Arrays.stream(symbols.split(","))
