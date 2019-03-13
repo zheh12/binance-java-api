@@ -8,7 +8,9 @@ import com.binance.api.client.domain.TimeInForce;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -51,7 +53,8 @@ public class NewOrderResponse {
 
     private OrderSide side;
 
-    private List<Trade> fills;
+  // @JsonSetter(nulls = Nulls.AS_EMPTY)
+  private List<Trade> fills;
 
     /**
      * Transact time for this order.
@@ -164,7 +167,7 @@ public class NewOrderResponse {
 
   @Override
   public String toString() {
-    ToStringBuilder builder = new ToStringBuilder(this, BinanceApiConstants.TO_STRING_BUILDER_STYLE)
+    return  new ToStringBuilder(this, BinanceApiConstants.TO_STRING_BUILDER_STYLE)
         .append("symbol", symbol)
         .append("orderId", orderId)
         .append("clientOrderId", clientOrderId)
@@ -175,13 +178,12 @@ public class NewOrderResponse {
         .append("status", status)
         .append("timeInForce", timeInForce)
         .append("type", type)
-        .append("side", side);
-      if (fills == null) {
-          builder.append("fills", "");
-      } else {
-          builder.append("fills", fills.stream().map(Object::toString).collect(Collectors.joining(", ")));
-      }
-      return builder.toString();
+        .append("side", side)
+        .append("fills", Optional.ofNullable(fills).orElse(Collections.emptyList())
+            .stream()
+            .map(Object::toString)
+            .collect(Collectors.joining(", ")))
+        .toString();
   }
 
 }
