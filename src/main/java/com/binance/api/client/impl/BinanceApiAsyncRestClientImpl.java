@@ -121,6 +121,11 @@ public class BinanceApiAsyncRestClientImpl implements BinanceApiAsyncRestClient 
   }
 
   @Override
+  public void getBookTicker(String symbol, BinanceApiCallback<BookTicker> callback) {
+    binanceApiService.getBookTicker(symbol).enqueue(new BinanceApiCallbackAdapter<>(callback));
+  }
+
+  @Override
   public void getBookTickers(BinanceApiCallback<List<BookTicker>> callback) {
     binanceApiService.getBookTickers().enqueue(new BinanceApiCallbackAdapter<>(callback));
   }

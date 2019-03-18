@@ -151,6 +151,11 @@ public interface BinanceApiAsyncRestClient {
    void getPrice(String symbol , BinanceApiCallback<TickerPrice> callback);
 
   /**
+   * Get best price/qty on the order book for one symbol.
+   */
+  void getBookTicker(String symbol, BinanceApiCallback<BookTicker> callback);
+
+  /**
    * Get best price/qty on the order book for all symbols (asynchronous).
    *
    * @param callback the callback that handles the response

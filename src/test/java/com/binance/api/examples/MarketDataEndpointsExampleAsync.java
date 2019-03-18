@@ -46,6 +46,9 @@ public class MarketDataEndpointsExampleAsync {
     // Book tickers (async)
     client.getBookTickers(response -> System.out.println(response));
 
+    // Book ticker (async)
+    client.getBookTicker("BTCUSDT", response -> System.out.println(response));
+
     // Exception handling
     try {
       client.getOrderBook("UNKNOWN", 10, response -> System.out.println(response));
