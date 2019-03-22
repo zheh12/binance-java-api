@@ -123,6 +123,9 @@ public class OrderTradeUpdateEvent {
   @JsonProperty("T")
   private Long orderTradeTime;
 
+  @JsonProperty("Z")
+  private String cummulativeQuoteQty;
+
   /**
    * Trade id.
    */
@@ -289,6 +292,13 @@ public class OrderTradeUpdateEvent {
     this.tradeId = tradeId;
   }
 
+  public String getCummulativeQuoteQty() {
+    return cummulativeQuoteQty;
+  }
+
+  public void setCummulativeQuoteQty(String cummulativeQuoteQty) {
+    this.cummulativeQuoteQty = cummulativeQuoteQty;
+  }
 
   @Override
   public String toString() {
@@ -312,7 +322,7 @@ public class OrderTradeUpdateEvent {
         .append("commission", commission)
         .append("commissionAsset", commissionAsset)
         .append("orderTradeTime", orderTradeTime)
-        .append("tradeId", tradeId)
+        .append("tradeId", tradeId).append("cummulativeQuoteQty", cummulativeQuoteQty)
         .toString();
   }
 }
