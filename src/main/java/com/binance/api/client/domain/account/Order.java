@@ -40,9 +40,11 @@ public class Order {
   private String origQty;
 
   /**
-   * Original quantity.
+   * Executed quantity.
    */
   private String executedQty;
+
+  private String cummulativeQuoteQty;
 
   /**
    * Order status.
@@ -183,6 +185,14 @@ public class Order {
     this.time = time;
   }
 
+  public String getCummulativeQuoteQty() {
+    return cummulativeQuoteQty;
+  }
+
+  public void setCummulativeQuoteQty(String cummulativeQuoteQty) {
+    this.cummulativeQuoteQty = cummulativeQuoteQty;
+  }
+
   @Override
   public String toString() {
     return new ToStringBuilder(this, BinanceApiConstants.TO_STRING_BUILDER_STYLE)
@@ -192,6 +202,7 @@ public class Order {
         .append("price", price)
         .append("origQty", origQty)
         .append("executedQty", executedQty)
+        .append("cummulativeQuoteQty", cummulativeQuoteQty)
         .append("status", status)
         .append("timeInForce", timeInForce)
         .append("type", type)
